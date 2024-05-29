@@ -1,0 +1,43 @@
+package in.besent.serveletproject;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/Regform")
+public class RegistractionPage extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
+	{
+		
+		String url = "jdbc:mysql://localhost:3306/ServletProject";
+		String username = "root";
+		String password = "Morgan@001";
+		String Myname = req.getParameter("name1");
+		String Myemail = req.getParameter("email");
+		String Mypassword = req.getParameter("password");
+		String Gender = req.getParameter("gender");
+		String Country = req.getParameter("country");
+		
+		try {
+			Class.forName("com.mysql.jdbc.cj.Driver");
+			Connection con = DriverManager.getConnection(url,username,password);
+			
+			PrepareStatement ps = con.prepareStatement("insert into userDetails values(?,?,?,?,?)");
+			
+		} catch (Exception e) {
+			
+		}
+
+
+		
+	}
+
+}
